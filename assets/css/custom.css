@@ -1,0 +1,38 @@
+.reveal pre {
+  width: 95%;
+}
+
+.reveal section img[data-unbordered] {
+  border-width: 0px;
+  box-shadow: none;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+  font-family: "ubuntu", sans-serif;
+}
+
+.reveal {
+  font-family: "ubuntu", sans-serif;
+}
+
+.reveal a {
+  color: #036;
+}
+
+.reveal blockquote {
+  font-family: serif;
+  width: 90%;
+}
+
+.reveal h1 {
+  font-size: 2.8em;
+}
+
+.reveal h2 {
+  font-size: 2em;
+}
+
+.reveal blockquote {
+  background-color: #c0a86e;
+  padding: 0.2em 1em;
+}
