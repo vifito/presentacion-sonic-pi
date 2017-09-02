@@ -68,10 +68,23 @@
 				</section>
 
 				<section>
-					<h2>Que é Sonic Pi?</h2>
-					<blockquote cite="http://sonic-pi.mehackit.org/exercises/en/01-introduction/01-introduction.html">
-						&ldquo;Sonic Pi é unha contorna de programación de código aberto, deseñada para explorar e aprender conceptos de programación a través do proceso de creación de novos sons. É un sintetizador libre para todo o mundo creado por <em>Sam Aaron</em>.&rdquo;
-					</blockquote>
+					<section>
+						<h2>Que é Sonic Pi?</h2>
+						<blockquote cite="http://sonic-pi.mehackit.org/exercises/en/01-introduction/01-introduction.html">
+							&ldquo;Sonic Pi é unha contorna de programación de código aberto, deseñada para explorar e aprender conceptos de programación a través do proceso de creación de novos sons. É un sintetizador libre para todo o mundo creado por <em>Sam Aaron</em>.&rdquo;
+						</blockquote>
+					</section>
+
+					<section>
+						<p>
+							<img src="assets/images/sonic-pi-web.png" alt="Descarga" data-unbordered />
+						</p>
+					</section>
+
+					<section>
+						<h3>Raspberry pi ???</h3>
+						<h4>Que é iso???</h4>
+					</section>
 				</section>
 
 				<section>
@@ -89,6 +102,15 @@
 					<section>
 						<img width="100%" data-unbordered data-src="assets/images/esquema-raspberry.jpg" alt="Esquema de Raspberry Pi">
 					</section>
+					<section>
+						<h2>Software que inclúe</h2>
+						<ul>
+							<li>Sonic Pi</li>
+							<li>Scratch, programación por bloques</li>
+							<li>Minecraft</li>
+							<li>...</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
@@ -100,6 +122,11 @@
 							Para executar en GNU/Linux suspender pulseaudio antes
 							pasuspender -- qjackctl
 						</aside>
+					</section>
+
+					<section>
+						<h4>Linguaxe de programación Ruby</h4>
+						<img alt="" data-unbordered data-src="assets/images/ruby-lang.jpg" />
 					</section>
 
 					<section>
@@ -162,6 +189,11 @@
 					</section>
 
 					<section>
+						<h4>Equivalencia numérica das notas</h4>
+						<img src="assets/images/midi_notes.png" data-unbordered alt="Equivalencia numérica das notas" />
+					</section>
+
+					<section>
 						<h4>Notación anglosaxona</h4>
 						<p>
 							<img src="assets/images/notation-anglosajona.png" width="60%" data-unbordered alt="Notación anglosaxona" />
@@ -170,11 +202,6 @@
 
 							<img src="assets/images/pentagrama-anglosajona.jpg" width="60%" data-unbordered alt="Notación anglosaxona" />
 						</p>
-					</section>
-
-					<section>
-						<h4>Equivalencia numérica das notas</h4>
-						<img src="assets/images/midi_notes.png" data-unbordered alt="Equivalencia numérica das notas" />
 					</section>
 
 					<section>
@@ -187,17 +214,17 @@
 				</section>
 
 				<section>
-					<h4>Duración</h4>
+					<h4>Silencios</h4>
 					<p>
-						<img src="assets/images/Notes_EN.png" data-unbordered alt="" />
-						<br>
+						<!-- <img src="assets/images/Notes_EN.png" data-unbordered alt="" />
+						<br> -->
 						<img src="assets/images/Rests_en.png" data-unbordered alt="" />
 					</p>
 				</section>
 
 				<section>
 					<section>
-						<h4>Unha escala (versión 1)</h4>
+						<h4>Unha escala (versión play + sleep)</h4>
 						<pre><code class="hljs ruby" data-trim>
 	play 60  # Do equivale a :C ou :C4
 	sleep 1
@@ -214,23 +241,68 @@
 					</section>
 
 					<section>
-						<h4>Unha escala (versión 2)</h4>
+						<h4>Unha escala (versión play_pattern)</h4>
 						<pre><code class="hljs ruby" data-trim>
-  # As notas como números
-	notas=[60, 62, 64, 65, 67, 69, 71, 72]
-  # As notas como notación anglosaxona, OLLO ao :C5
-	#notas=[:C, :D, :E, :F, :G, :A, :B, :C5]
-  play_pattern notas
+# As notas como números nunha lista entre corchetes
+# e separados por unha coma
+escala=[60, 62, 64, 65, 67, 69, 71, 72]
 
-	# Alterando duración
-	duracion=[0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-  # Outra forma de escribir a liña anterior
-	#duracion=Array.new(8, 0.5)
+# As notas como notación anglosaxona, OLLO ao :C5
+#escala=[:C, :D, :E, :F, :G, :A, :B, :C5]
+play_pattern escala
 
-  play_pattern_timed notas, duracion
+# Alterando duración
+duracion=[0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+# Outra forma de escribir a liña anterior
+#duracion=Array.new(8, 0.5)
+
+play_pattern_timed notas, duracion
 						</code></pre>
 					</section>
 
+					<section>
+						<h4>Unha escala (versión play_pattern + scale)</h4>
+						<pre><code class="hljs ruby" data-trim>
+play_pattern scale(:C, :diatonic)
+</code></pre>
+					</section>
+
+					<section>
+						<h4>Silencio dentro dunha lista</h4>
+						<p>
+							A letra :R (rest) equivale a un silencio
+						</p>
+						<pre><code class="hljs ruby" data-trim>
+play_pattern [:c, :d, :e, :f, :r, :g, :a, :b]
+</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h3>Acordes (chord)</h3>
+					<p>
+						Un acorde é unha lista de notas que se executan á vez
+					</p>
+					<pre><code class="hljs ruby" data-trim>
+# As dúas liñas son equivalentes
+#play [:d, :f, :a, :c5]
+play chord(:d, :minor7)
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Instrumentos (use_synth)</h3>
+					<pre><code class="hljs ruby" data-trim>
+use_synth :beep
+play 60
+
+# Outros synth
+# :prophet
+# :dsaw
+# :fm
+# :tb303
+# :pulse
+					</code></pre>
 				</section>
 
 				<section>
@@ -245,12 +317,14 @@
 
 				<section>
 					<section>
-						<h4>Ritmo de batería (live_loop)</h4>
+						<h4>Ritmo de batería (live_loop e sample)</h4>
+						<p>
+							Os "samples" son pequenas mostras de són que podemos empregar. Sonic pi vén cun conxunto de mostras pero podemos empregar as nosas.
+						</p>
 						<pre><code class="hljs ruby" data-trim>
 	live_loop :drums do
 	  sample :drum_heavy_kick
 	  sleep 1
-
 	end
 						</code></pre>
 					</section>
@@ -258,28 +332,28 @@
 					<section>
 						<h4>Ritmo de batería (bombo e caixa)</h4>
 						<pre><code class="hljs ruby" data-trim>
-	live_loop :drums do
-	  sample :drum_heavy_kick
-	  sleep 1
-	  sample :drum_snare_hard
-	  sleep 1
-	  sample :drum_heavy_kick
-	  sleep 1
-	  sample :drum_snare_hard
-	  sleep 1
-	end
+live_loop :drums do
+  sample :drum_heavy_kick
+  sleep 1
+  sample :drum_snare_hard
+  sleep 1
+  sample :drum_heavy_kick
+  sleep 1
+  sample :drum_snare_hard
+  sleep 1
+end
 						</code></pre>
 					</section>
 
 					<section>
 						<h4>Ritmo de batería (charles)</h4>
 						<pre><code class="hljs ruby" data-trim>
-	live_loop :hihat do
-	  sample :drum_cymbal_closed
-	  sleep 0.25
-	  sample :drum_cymbal_pedal
-	  sleep 1
-	end
+live_loop :hihat do
+  sample :drum_cymbal_closed
+  sleep 0.25
+  sample :drum_cymbal_pedal
+  sleep 1
+end
 						</code></pre>
 					</section>
 				</section>
@@ -287,19 +361,19 @@
 
 				<section>
 					<section>
-						<h4>Pista baixo</h4>
+						<h4>Pista baixo (ADSR)</h4>
 						<pre><code class="hljs ruby" data-trim>
-	live_loop :bass do
-	  use_synth :fm
-	  play :c2, attack: 0, release: 0.25
-	  sleep 0.25
-	  play :c2, attack: 0, release: 0.3
-	  sleep 2
-	  play :e2
-	  sleep 0.75
-	  play :f2
-	  sleep 1
-	end
+live_loop :bass do
+  use_synth :fm
+  play :c2, attack: 0, release: 0.25
+  sleep 0.25
+  play :c2, attack: 0, release: 0.3
+  sleep 2
+  play :e2
+  sleep 0.75
+  play :f2
+  sleep 1
+end
 </code></pre>
 					</section>
 
@@ -310,38 +384,88 @@
 				</section>
 
 				<section>
-					<h4>Pista principal</h4>
+					<h4>Pista principal (play_pattern_timed)</h4>
 					<pre><code class="hljs ruby" data-trim>
-					live_loop :melody do
-					  play_pattern_timed [:c4, :e4, :f4, :g4, :f4, :e4, :f4, :g4, :f4, :e4, :f4], [0.25, 0.25, 0.25, 1.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
-					end
+live_loop :melody do
+  play_pattern_timed
+		[:c4, :e4, :f4, :g4, :f4, :e4, :f4, :g4, :f4, :e4, :f4],
+		[0.25, 0.25, 0.25, 1.5, 0.25, 0.25,0.25, 0.25, 0.25, 0.25]
+end
 						</code></pre>
 				</section>
 
 				<section>
 					<section>
-						<h4>"Improvisación"</h4>
+						<h4>"Improvisación" (one_in e use_transpose)</h4>
 						<pre><code class="hljs ruby" data-trim>
-  live_loop :melody do
-	  if one_in(6)
-	    use_transpose 2
-	  else
-	    use_transpose 0
-	  end
-	  play_pattern_timed [:c4, :e4, :f4, :g4, :f4, :e4, :f4, :g4, :f4, :e4, :f4], [0.25, 0.25, 0.25, 1.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25], attack: 0, release: 0.2
-	end
+live_loop :melody do
+  if one_in(6)
+    use_transpose 2
+  else
+    use_transpose 0
+  end
+  play_pattern_timed
+		[:c4, :e4, :f4, :g4, :f4, :e4, :f4, :g4, :f4, :e4, :f4],
+		[0.25, 0.25, 0.25, 1.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+		attack: 0,
+		release: 0.2
+end
 </code></pre>
 					</section>
 
 					<section>
-						<h4></h4>
+						<h4>Escoller unha nota dunha lista (choose)</h4>
 						<pre><code class="hljs ruby" data-trim>
-	live_loop :bass do
-	  use_synth :tb303
-	  play (chord :C2, :major).choose, release: 0.125, cutoff: rrand(60, 110)
-	  sleep 0.25
-	end
+live_loop :bass do
+  use_synth :tb303
+  play (chord :C2, :major).choose,
+	  release: 0.125, cutoff: rrand(60, 110)
+  sleep 0.25
+end
 </code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Escalas (scale, tick, choose, live_loop)</h3>
+						<p>
+							Unha escala é unha lista de notas que se executa unha detrás da outra de xeito ascendente
+						</p>
+						<pre><code class="hljs ruby" data-trim>
+live_loop :escala do
+  play (scale :c, :diatonic).tick
+	sleep 1
+	play (scale :c, :diatonic).choose
+	sleep 1
+end
+						</code></pre>
+					</section>
+					<section>
+						<h3>Funcións para listas: ring, tick, shuffle, choose,...</h3>
+						<pre><code>
+# Lista de acordes
+progresion=[chord(:d, :m7), chord(:e, :m7), chord(:d, :m7), chord(:G, :M7)]
+
+live_loop :acordes do
+  ##| with_fx :vowel do
+  play progresion.ring.tick, attack: 0.25, release: 0.25, sustain: 1
+  sleep 1.5
+  ##| end
+end
+						</code></pre>
+					</section>
+
+					<section>
+						<h3>sample e pitch</h3>
+						<pre><code>
+	trompeta='/ruta/ao/ficheiro/trumpet_cs5.wav'
+	tonos=[0,2,4,5,7,9,11,12]
+	8.times do
+	  sample trompeta, sustain: 0.5, release: 0.5, pitch: tonos.tick
+	  sleep 1
+	end
+						</code></pre>
 					</section>
 				</section>
 
