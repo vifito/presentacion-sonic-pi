@@ -36,3 +36,7 @@
   background-color: #c0a86e;
   padding: 0.2em 1em;
 }
+
+.reveal .bg-white {
+  background-color: rgba(255, 255, 255, 0.8);
+}
